@@ -15,21 +15,26 @@ export default function AdminLoginPage() {
         setError("")
         setLoading(true)
 
-        const response = await fetch("/api/admin/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password })
-        })
+        try {
+            const response = await fetch("/api/admin/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password })
+            })
 
-        setLoading(false)
+            if (!response.ok) {
+                const payload = await response.json().catch(() => null) as { error?: string } | null
+                setError(payload?.error || "Credenciales invalidas")
+                return
+            }
 
-        if (!response.ok) {
-            setError("Credenciales invalidas")
-            return
+            router.push("/admin")
+            router.refresh()
+        } catch {
+            setError("No se pudo conectar con el servidor")
+        } finally {
+            setLoading(false)
         }
-
-        router.push("/admin")
-        router.refresh()
     }
 
     return (

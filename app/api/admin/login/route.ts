@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { ADMIN_COOKIE_NAME, getAdminSessionToken, validateCredentials } from "@/lib/auth"
+import { ADMIN_COOKIE_NAME, getAdminAuthConfigError, getAdminSessionToken, validateCredentials } from "@/lib/auth"
 
 const MAX_ATTEMPTS = 10
 const WINDOW_MS = 10 * 60 * 1000
@@ -40,6 +40,11 @@ function clearAttempts(ip: string): void {
 
 export async function POST(request: Request) {
     const ip = getClientIp(request)
+    const authConfigError = getAdminAuthConfigError()
+
+    if (authConfigError) {
+        return NextResponse.json({ error: authConfigError }, { status: 503 })
+    }
 
     if (!canAttemptLogin(ip)) {
         return NextResponse.json({ error: "Demasiados intentos. Intenta nuevamente en unos minutos" }, { status: 429 })

@@ -1,14 +1,5 @@
-import Image from "next/image"
 import Link from "next/link"
-
-const tiendas = [
-    { nombre: "Dollarcity", categoria: "Hogar y variedad", piso: "Piso 1", color: "from-red-500 to-orange-400", letra: "D" },
-    { nombre: "Bancolombia", categoria: "Servicios financieros", piso: "Piso 1", color: "from-blue-600 to-cyan-500", letra: "B" },
-    { nombre: "Juan Valdez", categoria: "Zona café", piso: "Piso 2", color: "from-green-600 to-emerald-500", letra: "JV" },
-    { nombre: "Miniso", categoria: "Accesorios y regalos", piso: "Piso 2", color: "from-pink-500 to-rose-400", letra: "M" },
-    { nombre: "Smart Fit", categoria: "Gimnasio", piso: "Piso 3", color: "from-yellow-500 to-orange-500", letra: "SF" },
-    { nombre: "Claro", categoria: "Tecnología", piso: "Piso 1", color: "from-violet-600 to-purple-500", letra: "C" }
-]
+import { getEventos, getLocalesDisponibles, getPromociones, getTiendas } from "@/lib/cms"
 
 const categorias = [
     { icono: "👗", label: "Moda" },
@@ -21,19 +12,18 @@ const categorias = [
     { icono: "🎬", label: "Entretenimiento" }
 ]
 
-const promos = [
-    { titulo: "Hasta 40% en moda", desc: "Studio F, Gef y Tennis con descuentos especiales de temporada.", badge: "40% OFF", color: "bg-red-600" },
-    { titulo: "Compra y gana", desc: "Por cada $150.000 en compras acumula puntos y participa por bonos.", badge: "PUNTOS", color: "bg-lime-600" },
-    { titulo: "Zona Kids gratis", desc: "Todos los domingos el área de juegos es completamente gratuita.", badge: "GRATIS", color: "bg-yellow-500" }
-]
+export default async function Home() {
+    const [tiendas, promos, eventos, localesDisponibles] = await Promise.all([
+        getTiendas(),
+        getPromociones(),
+        getEventos(),
+        getLocalesDisponibles()
+    ])
+    const tiendasDestacadas = tiendas.slice(0, 6)
+    const promosHome = promos.slice(0, 3)
+    const eventosHome = eventos.slice(0, 3)
+    const localesHome = localesDisponibles.slice(0, 3)
 
-const eventos = [
-    { titulo: "Show Infantil", desc: "Payasos, magia y sorpresas para los más pequeños.", fecha: "Sáb 19 Abr", hora: "4:00 PM", lugar: "Plaza Central" },
-    { titulo: "Feria Gastronómica", desc: "Sabores de Colombia y el mundo en un solo lugar.", fecha: "Dom 20 Abr", hora: "12:00 PM", lugar: "Piso 2" },
-    { titulo: "Tributo a los 80s", desc: "Música en vivo con las mejores canciones de la década.", fecha: "Vie 25 Abr", hora: "7:00 PM", lugar: "Atrio Principal" }
-]
-
-export default function Home() {
     return (
         <main>
             {/* ── HERO ── */}
@@ -127,9 +117,9 @@ export default function Home() {
                     </div>
 
                     <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-5">
-                        {tiendas.map((t, i) => (
+                        {tiendasDestacadas.map(t => (
                             <div
-                                key={i}
+                                key={t.id}
                                 className="bg-white rounded-2xl overflow-hidden shadow-sm border border-zinc-100 hover:shadow-lg hover:-translate-y-1 transition-all group"
                             >
                                 <div className={`h-28 bg-gradient-to-br ${t.color} flex items-center justify-center`}>
@@ -152,6 +142,48 @@ export default function Home() {
                 </div>
             </section>
 
+            <section className="max-w-7xl mx-auto px-6 py-20">
+                <div className="grid lg:grid-cols-[0.95fr_1.05fr] gap-10 items-start">
+                    <div>
+                        <p className="text-red-600 font-bold text-sm uppercase tracking-wider mb-2">Expansión comercial</p>
+                        <h2 className="text-4xl font-black text-zinc-900">Locales disponibles para alquiler, venta y campañas temporales</h2>
+                        <p className="text-zinc-500 text-lg mt-4 leading-relaxed">
+                            Si estás buscando abrir marca, reubicar operación o activar una campaña, ya puedes revisar los espacios activos dentro del centro comercial.
+                        </p>
+                        <div className="mt-8 flex flex-wrap gap-4">
+                            <Link
+                                href="/disponibilidad"
+                                className="bg-zinc-900 text-white px-7 py-4 rounded-2xl font-bold hover:bg-red-600 transition-colors"
+                            >
+                                Ver disponibilidad
+                            </Link>
+                            <a
+                                href="mailto:comercial@fiestasubacc.com?subject=Interes%20en%20espacios%20comerciales"
+                                className="border border-zinc-300 text-zinc-800 px-7 py-4 rounded-2xl font-bold hover:border-red-300 hover:text-red-600 transition-colors"
+                            >
+                                Solicitar portafolio
+                            </a>
+                        </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-4">
+                        {localesHome.map(local => (
+                            <article key={local.id} className="rounded-3xl border border-zinc-200 overflow-hidden bg-white shadow-sm">
+                                <div className={`h-28 bg-gradient-to-br ${local.color} p-5 flex flex-col justify-between text-white`}>
+                                    <span className="text-xs font-bold uppercase tracking-[0.2em] opacity-90">{local.operacion}</span>
+                                    <span className="text-2xl font-black">{local.area}</span>
+                                </div>
+                                <div className="p-5">
+                                    <h3 className="text-lg font-black text-zinc-900">{local.nombre}</h3>
+                                    <p className="text-sm text-zinc-500 mt-2">{local.ubicacion}</p>
+                                    <p className="text-sm font-bold text-zinc-900 mt-4">{local.canon}</p>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* ── PROMOCIONES Y EVENTOS ── */}
             <section className="max-w-7xl mx-auto px-6 py-20">
                 <div className="grid md:grid-cols-2 gap-10">
@@ -166,9 +198,9 @@ export default function Home() {
                         </div>
 
                         <div className="space-y-4">
-                            {promos.map((p, i) => (
-                                <div key={i} className="flex items-start gap-4 bg-white border border-zinc-100 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
-                                    <span className={`${p.color} text-white text-xs font-black px-3 py-1.5 rounded-xl shrink-0 tracking-wide`}>
+                            {promosHome.map(p => (
+                                <div key={p.id} className="flex items-start gap-4 bg-white border border-zinc-100 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
+                                    <span className={`${p.badgeColor} text-white text-xs font-black px-3 py-1.5 rounded-xl shrink-0 tracking-wide`}>
                                         {p.badge}
                                     </span>
                                     <div>
@@ -198,8 +230,8 @@ export default function Home() {
                         </div>
 
                         <div className="space-y-4">
-                            {eventos.map((e, i) => (
-                                <div key={i} className="flex items-start gap-4 bg-white border border-zinc-100 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
+                            {eventosHome.map(e => (
+                                <div key={e.id} className="flex items-start gap-4 bg-white border border-zinc-100 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
                                     <div className="bg-blue-50 rounded-xl p-3 text-center shrink-0 min-w-[64px]">
                                         <p className="text-blue-600 font-black text-xs leading-tight">{e.fecha}</p>
                                         <p className="text-zinc-500 text-xs mt-1">{e.hora}</p>

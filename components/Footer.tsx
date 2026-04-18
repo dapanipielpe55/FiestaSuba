@@ -62,9 +62,11 @@ export default function Footer() {
                     <ul className="space-y-3 text-zinc-400 text-sm">
                         <li><Link href="/" className="hover:text-white hover:translate-x-1 transition-all inline-block">Inicio</Link></li>
                         <li><Link href="/tiendas" className="hover:text-white hover:translate-x-1 transition-all inline-block">Tiendas y locales</Link></li>
+                        <li><Link href="/disponibilidad" className="hover:text-white hover:translate-x-1 transition-all inline-block">Locales disponibles</Link></li>
                         <li><Link href="/promociones" className="hover:text-white hover:translate-x-1 transition-all inline-block">Promociones</Link></li>
                         <li><Link href="/eventos" className="hover:text-white hover:translate-x-1 transition-all inline-block">Eventos y agenda</Link></li>
                         <li><Link href="/contacto" className="hover:text-white hover:translate-x-1 transition-all inline-block">Contacto</Link></li>
+                        <li><Link href="/admin/login" className="hover:text-white hover:translate-x-1 transition-all inline-block">Acceso administrador</Link></li>
                     </ul>
                 </div>
 

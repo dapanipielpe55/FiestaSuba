@@ -1,23 +1,11 @@
 import Link from "next/link"
-
-const tiendas = [
-    { nombre: "Dollarcity", categoria: "Hogar y variedad", piso: "Piso 1", local: "L-101", horario: "9:00 – 21:00", color: "from-red-500 to-orange-400", letra: "D", tag: "Variedad" },
-    { nombre: "Bancolombia", categoria: "Servicios financieros", piso: "Piso 1", local: "L-105", horario: "8:00 – 17:00", color: "from-blue-600 to-cyan-500", letra: "B", tag: "Servicios" },
-    { nombre: "Juan Valdez", categoria: "Cafetería", piso: "Piso 2", local: "L-210", horario: "8:00 – 21:00", color: "from-green-600 to-emerald-500", letra: "JV", tag: "Gastronomía" },
-    { nombre: "Miniso", categoria: "Accesorios y regalos", piso: "Piso 2", local: "L-214", horario: "9:00 – 21:00", color: "from-pink-500 to-rose-400", letra: "M", tag: "Accesorios" },
-    { nombre: "Smart Fit", categoria: "Gimnasio", piso: "Piso 3", local: "L-310", horario: "5:00 – 23:00", color: "from-yellow-500 to-orange-500", letra: "SF", tag: "Deporte" },
-    { nombre: "Claro", categoria: "Tecnología y telefonía", piso: "Piso 1", local: "L-108", horario: "9:00 – 21:00", color: "from-violet-600 to-purple-500", letra: "C", tag: "Tecnología" },
-    { nombre: "Studio F", categoria: "Moda femenina", piso: "Piso 2", local: "L-205", horario: "9:00 – 21:00", color: "from-fuchsia-500 to-pink-500", letra: "SF", tag: "Moda" },
-    { nombre: "Éxito Express", categoria: "Supermercado", piso: "Piso 1", local: "L-102", horario: "7:00 – 22:00", color: "from-yellow-400 to-amber-500", letra: "É", tag: "Mercado" },
-    { nombre: "Subway", categoria: "Comidas rápidas", piso: "Piso 2", local: "L-215", horario: "9:00 – 21:00", color: "from-lime-500 to-green-500", letra: "S", tag: "Gastronomía" },
-    { nombre: "Óptica Lafam", categoria: "Salud visual", piso: "Piso 2", local: "L-208", horario: "9:00 – 20:00", color: "from-sky-500 to-blue-500", letra: "OL", tag: "Salud" },
-    { nombre: "Davivienda", categoria: "Servicios financieros", piso: "Piso 1", local: "L-106", horario: "8:00 – 17:00", color: "from-red-600 to-rose-500", letra: "D", tag: "Servicios" },
-    { nombre: "Mac Pollo", categoria: "Comidas rápidas", piso: "Piso 2", local: "L-212", horario: "10:00 – 21:00", color: "from-orange-400 to-amber-400", letra: "MP", tag: "Gastronomía" }
-]
+import { getTiendas } from "@/lib/cms"
 
 const tags = ["Todos", "Moda", "Gastronomía", "Tecnología", "Servicios", "Deporte", "Accesorios", "Salud", "Variedad", "Mercado"]
 
-export default function Tiendas() {
+export default async function Tiendas() {
+    const tiendas = await getTiendas()
+
     return (
         <main>
             {/* Hero */}
@@ -56,9 +44,9 @@ export default function Tiendas() {
             {/* Grid de tiendas */}
             <section className="max-w-7xl mx-auto px-6 pb-24">
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {tiendas.map((t, i) => (
+                    {tiendas.map(t => (
                         <div
-                            key={i}
+                            key={t.id}
                             className="bg-white rounded-2xl overflow-hidden shadow-sm border border-zinc-100 hover:shadow-lg hover:-translate-y-1 transition-all"
                         >
                             <div className={`h-32 bg-gradient-to-br ${t.color} flex items-center justify-center relative`}>

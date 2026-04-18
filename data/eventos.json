@@ -1,0 +1,44 @@
+[
+  {
+    "id": "e1",
+    "titulo": "Show Infantil con Payasos",
+    "desc": "Magia, juegos y actividades para toda la familia.",
+    "fecha": "Sab",
+    "dia": "19",
+    "mes": "Abr",
+    "hora": "4:00 PM",
+    "lugar": "Plaza Central",
+    "categoria": "Infantil",
+    "img": "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=600",
+    "catColor": "bg-yellow-500",
+    "gratis": true
+  },
+  {
+    "id": "e2",
+    "titulo": "Feria Gastronomica",
+    "desc": "Sabores de Colombia y el mundo en un solo lugar.",
+    "fecha": "Dom",
+    "dia": "20",
+    "mes": "Abr",
+    "hora": "12:00 PM",
+    "lugar": "Piso 2",
+    "categoria": "Gastronomia",
+    "img": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=600",
+    "catColor": "bg-orange-500",
+    "gratis": false
+  },
+  {
+    "id": "e3",
+    "titulo": "Tributo a los 80s",
+    "desc": "Concierto en vivo con los mejores clasicos.",
+    "fecha": "Vie",
+    "dia": "25",
+    "mes": "Abr",
+    "hora": "7:00 PM",
+    "lugar": "Atrio Principal",
+    "categoria": "Concierto",
+    "img": "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=600",
+    "catColor": "bg-purple-600",
+    "gratis": true
+  }
+]

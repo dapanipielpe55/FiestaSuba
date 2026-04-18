@@ -1,0 +1,32 @@
+[
+  {
+    "id": "p1",
+    "titulo": "Hasta 40% en moda",
+    "tienda": "Studio F, Gef, Tennis",
+    "desc": "Renueva tu guardarropa con descuentos especiales de temporada.",
+    "badge": "40% OFF",
+    "vigencia": "Valido hasta 30 Abr 2026",
+    "img": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=600",
+    "badgeColor": "bg-red-600"
+  },
+  {
+    "id": "p2",
+    "titulo": "Compra y gana puntos",
+    "tienda": "Tiendas participantes",
+    "desc": "Por cada $150.000 en compras acumula puntos y redime beneficios.",
+    "badge": "PUNTOS",
+    "vigencia": "Valido hasta 25 Abr 2026",
+    "img": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=600",
+    "badgeColor": "bg-lime-600"
+  },
+  {
+    "id": "p3",
+    "titulo": "Zona Kids gratis",
+    "tienda": "Zona de entretenimiento",
+    "desc": "Todos los domingos el area de juegos es gratuita.",
+    "badge": "GRATIS",
+    "vigencia": "Todos los domingos",
+    "img": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?q=80&w=600",
+    "badgeColor": "bg-yellow-500"
+  }
+]

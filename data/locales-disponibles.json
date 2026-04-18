@@ -1,0 +1,58 @@
+[
+  {
+    "id": "ld1",
+    "nombre": "Local Esquinero L-118",
+    "operacion": "Alquiler",
+    "tipo": "Local comercial",
+    "area": "42 m2",
+    "ubicacion": "Piso 1 · Zona alto trafico",
+    "canon": "$4.800.000 / mes",
+    "estado": "Disponible inmediato",
+    "idealPara": ["Moda", "Accesorios", "Tecnologia"],
+    "descripcion": "Espacio esquinero con excelente vitrina, frente a corredor principal y alto flujo peatonal durante toda la semana.",
+    "contacto": "comercial@fiestasubacc.com",
+    "color": "from-red-600 to-orange-400"
+  },
+  {
+    "id": "ld2",
+    "nombre": "Modulo M-07",
+    "operacion": "Alquiler",
+    "tipo": "Isla comercial",
+    "area": "12 m2",
+    "ubicacion": "Piso 1 · Plaza central",
+    "canon": "$2.100.000 / mes",
+    "estado": "Disponible desde mayo",
+    "idealPara": ["Belleza", "Regalos", "Temporadas"],
+    "descripcion": "Formato ideal para marcas de impulso, lanzamientos y activaciones de temporada en una de las zonas mas visibles del centro comercial.",
+    "contacto": "leasing@fiestasubacc.com",
+    "color": "from-fuchsia-600 to-rose-400"
+  },
+  {
+    "id": "ld3",
+    "nombre": "Local Premium L-245",
+    "operacion": "Venta",
+    "tipo": "Local comercial",
+    "area": "68 m2",
+    "ubicacion": "Piso 2 · Frente a plazoleta",
+    "canon": "$420.000.000",
+    "estado": "Disponible",
+    "idealPara": ["Gastronomia", "Cafe", "Experiencias"],
+    "descripcion": "Unidad con punto hidraulico y excelente visibilidad para conceptos gastronomicos, cafes de autor o experiencias de marca.",
+    "contacto": "inversiones@fiestasubacc.com",
+    "color": "from-amber-500 to-yellow-400"
+  },
+  {
+    "id": "ld4",
+    "nombre": "Pop-up P-03",
+    "operacion": "Temporal",
+    "tipo": "Espacio promocional",
+    "area": "18 m2",
+    "ubicacion": "Piso 3 · Acceso cine y entretenimiento",
+    "canon": "Tarifa por campaña",
+    "estado": "Consulta agenda",
+    "idealPara": ["Eventos", "Marcas emergentes", "Activaciones"],
+    "descripcion": "Espacio flexible para campañas de corta duracion, lanzamientos, ferias y experiencias de marca con montaje liviano.",
+    "contacto": "activaciones@fiestasubacc.com",
+    "color": "from-blue-600 to-cyan-400"
+  }
+]

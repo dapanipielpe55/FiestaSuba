@@ -1,0 +1,46 @@
+[
+  {
+    "id": "t1",
+    "nombre": "Dollarcity",
+    "categoria": "Hogar y variedad",
+    "piso": "Piso 1",
+    "local": "L-101",
+    "horario": "9:00 - 21:00",
+    "color": "from-red-500 to-orange-400",
+    "letra": "D",
+    "tag": "Variedad"
+  },
+  {
+    "id": "t2",
+    "nombre": "Bancolombia",
+    "categoria": "Servicios financieros",
+    "piso": "Piso 1",
+    "local": "L-105",
+    "horario": "8:00 - 17:00",
+    "color": "from-blue-600 to-cyan-500",
+    "letra": "B",
+    "tag": "Servicios"
+  },
+  {
+    "id": "t3",
+    "nombre": "Juan Valdez",
+    "categoria": "Cafeteria",
+    "piso": "Piso 2",
+    "local": "L-210",
+    "horario": "8:00 - 21:00",
+    "color": "from-green-600 to-emerald-500",
+    "letra": "JV",
+    "tag": "Gastronomia"
+  },
+  {
+    "id": "t4",
+    "nombre": "Miniso",
+    "categoria": "Accesorios y regalos",
+    "piso": "Piso 2",
+    "local": "L-214",
+    "horario": "9:00 - 21:00",
+    "color": "from-pink-500 to-rose-400",
+    "letra": "M",
+    "tag": "Accesorios"
+  }
+]

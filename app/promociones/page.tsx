@@ -1,63 +1,9 @@
 import Link from "next/link"
+import { getPromociones } from "@/lib/cms"
 
-const promos = [
-    {
-        titulo: "Hasta 40% en moda",
-        tienda: "Studio F, Gef, Tennis",
-        desc: "Renueva tu guardarropa con los mejores descuentos de temporada en las tiendas de moda del centro comercial.",
-        badge: "40% OFF",
-        vigencia: "Válido hasta 30 Abr 2026",
-        img: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=600",
-        badgeColor: "bg-red-600"
-    },
-    {
-        titulo: "Compra y gana puntos",
-        tienda: "Todas las tiendas participantes",
-        desc: "Por cada $150.000 en compras acumula puntos en nuestra app y redímelos por bonos de regalo o descuentos exclusivos.",
-        badge: "PUNTOS x2",
-        vigencia: "Válido hasta 25 Abr 2026",
-        img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=600",
-        badgeColor: "bg-lime-600"
-    },
-    {
-        titulo: "Zona Kids gratis",
-        tienda: "Zona de entretenimiento",
-        desc: "Todos los domingos el área de juegos y actividades para niños es completamente gratuita. ¡Diversión sin límites!",
-        badge: "GRATIS",
-        vigencia: "Todos los domingos",
-        img: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?q=80&w=600",
-        badgeColor: "bg-yellow-500"
-    },
-    {
-        titulo: "15% dto en Smart Fit",
-        tienda: "Smart Fit",
-        desc: "Nuevas membresías con 15% de descuento el primer mes. Comienza tu transformación hoy en nuestro gimnasio.",
-        badge: "15% OFF",
-        vigencia: "Válido hasta 30 Abr 2026",
-        img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600",
-        badgeColor: "bg-orange-500"
-    },
-    {
-        titulo: "2x1 los martes en Juan Valdez",
-        tienda: "Juan Valdez · Piso 2",
-        desc: "Cada martes paga uno y lleva dos bebidas frías o calientes en Juan Valdez. La pausa perfecta para tu día.",
-        badge: "2x1",
-        vigencia: "Todos los martes",
-        img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=600",
-        badgeColor: "bg-green-600"
-    },
-    {
-        titulo: "Descuentos especiales Dollarcity",
-        tienda: "Dollarcity · Piso 1",
-        desc: "Fines de semana con precios increíbles en hogar, decoración y artículos variados. ¡Todo a precios que no creerás!",
-        badge: "FIN DE SEMANA",
-        vigencia: "Sábados y domingos",
-        img: "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=600",
-        badgeColor: "bg-blue-600"
-    }
-]
+export default async function Promociones() {
+    const promos = await getPromociones()
 
-export default function Promociones() {
     return (
         <main>
             {/* Hero */}
@@ -86,9 +32,9 @@ export default function Promociones() {
             {/* Grid de promos */}
             <section className="max-w-7xl mx-auto px-6 py-16">
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {promos.map((p, i) => (
+                    {promos.map(p => (
                         <div
-                            key={i}
+                            key={p.id}
                             className="bg-white rounded-2xl overflow-hidden shadow-sm border border-zinc-100 hover:shadow-xl hover:-translate-y-1 transition-all"
                         >
                             <div className="relative h-48 overflow-hidden">

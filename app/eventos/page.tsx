@@ -1,87 +1,10 @@
 import Link from "next/link"
+import { getEventos } from "@/lib/cms"
 
-const eventos = [
-    {
-        titulo: "Show Infantil con Payasos",
-        desc: "Payasos, magia, globoflexia y juegos para los más pequeños. Una tarde llena de risas y diversión garantizada.",
-        fecha: "Sáb",
-        dia: "19",
-        mes: "Abr",
-        hora: "4:00 PM",
-        lugar: "Plaza Central · Piso 1",
-        categoria: "Infantil",
-        img: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=600",
-        catColor: "bg-yellow-500",
-        gratis: true
-    },
-    {
-        titulo: "Feria Gastronómica",
-        desc: "Sabores de Colombia y el mundo en un solo lugar. Más de 20 estands con platos típicos, internacionales y postres.",
-        fecha: "Dom",
-        dia: "20",
-        mes: "Abr",
-        hora: "12:00 PM",
-        lugar: "Piso 2 · Zona Gastronómica",
-        categoria: "Gastronomía",
-        img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=600",
-        catColor: "bg-orange-500",
-        gratis: false
-    },
-    {
-        titulo: "Tributo a los 80s",
-        desc: "Una noche de nostalgia con las mejores canciones de los 80s. Banda en vivo y ambiente retro para todos los gustos.",
-        fecha: "Vie",
-        dia: "25",
-        mes: "Abr",
-        hora: "7:00 PM",
-        lugar: "Atrio Principal",
-        categoria: "Concierto",
-        img: "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=600",
-        catColor: "bg-purple-600",
-        gratis: true
-    },
-    {
-        titulo: "Yoga al Aire Libre",
-        desc: "Clases de yoga y meditación en nuestra terraza. Ideal para comenzar el día con energía y bienestar. Todos los niveles.",
-        fecha: "Mar · Jue",
-        dia: "22",
-        mes: "Abr",
-        hora: "7:00 AM",
-        lugar: "Terraza Piso 3",
-        categoria: "Bienestar",
-        img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=600",
-        catColor: "bg-teal-600",
-        gratis: true
-    },
-    {
-        titulo: "Taller de Arte Infantil",
-        desc: "Los niños crearán sus propias obras de arte con pintura, arcilla y técnicas mixtas. Materiales incluidos.",
-        fecha: "Sáb",
-        dia: "26",
-        mes: "Abr",
-        hora: "3:00 PM",
-        lugar: "Zona Kids · Piso 2",
-        categoria: "Infantil",
-        img: "https://images.unsplash.com/photo-1560707854-d70c51a00d7c?q=80&w=600",
-        catColor: "bg-pink-500",
-        gratis: true
-    },
-    {
-        titulo: "Noche de Jazz",
-        desc: "Un cuarteto de jazz en vivo amenizará la noche del sábado. Déjate llevar por la música y el ambiente exclusivo.",
-        fecha: "Sáb",
-        dia: "26",
-        mes: "Abr",
-        hora: "8:00 PM",
-        lugar: "Atrio Principal",
-        categoria: "Música",
-        img: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=600",
-        catColor: "bg-zinc-700",
-        gratis: true
-    }
-]
+export default async function Eventos() {
+    const eventos = await getEventos()
+    const destacado = eventos[0]
 
-export default function Eventos() {
     return (
         <main>
             {/* Hero */}
@@ -103,16 +26,18 @@ export default function Eventos() {
             <section className="max-w-7xl mx-auto px-6 py-12">
                 <div
                     className="relative rounded-3xl overflow-hidden h-72 bg-cover bg-center"
-                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=1400')" }}
+                    style={{
+                        backgroundImage: `url('${destacado?.img ?? "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=1400"}')`
+                    }}
                 >
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/60 to-transparent" />
                     <div className="relative h-full flex items-center px-10 text-white">
                         <div>
                             <span className="inline-block bg-purple-600 text-white text-xs font-black px-3 py-1.5 rounded-full mb-4">DESTACADO</span>
-                            <h2 className="text-4xl font-black mb-2">Tributo a los 80s</h2>
-                            <p className="text-blue-200 mb-4">Viernes 25 Abr · 7:00 PM · Atrio Principal</p>
+                            <h2 className="text-4xl font-black mb-2">{destacado?.titulo ?? "Evento destacado"}</h2>
+                            <p className="text-blue-200 mb-4">{destacado ? `${destacado.fecha} ${destacado.dia} ${destacado.mes} · ${destacado.hora} · ${destacado.lugar}` : "Muy pronto anunciaremos nuevos eventos"}</p>
                             <span className="inline-block bg-white/20 border border-white/30 text-white text-sm font-bold px-4 py-2 rounded-full">
-                                Entrada libre · ¡No te lo pierdas!
+                                {destacado?.gratis ? "Entrada libre · No te lo pierdas" : "Cupo limitado · Reserva pronto"}
                             </span>
                         </div>
                     </div>
@@ -123,9 +48,9 @@ export default function Eventos() {
             <section className="max-w-7xl mx-auto px-6 pb-20">
                 <h2 className="text-2xl font-black text-zinc-900 mb-8">Todos los eventos</h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {eventos.map((e, i) => (
+                    {eventos.map(e => (
                         <div
-                            key={i}
+                            key={e.id}
                             className="bg-white rounded-2xl overflow-hidden shadow-sm border border-zinc-100 hover:shadow-xl hover:-translate-y-1 transition-all"
                         >
                             <div className="relative h-44 overflow-hidden">
